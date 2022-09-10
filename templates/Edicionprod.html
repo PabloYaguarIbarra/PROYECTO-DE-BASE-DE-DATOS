@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block title %} Edicion de Producto {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edicion Producto</h2>  
+            <div class="card py-2 ">
+                <div class="card-body">
+                    <form action="{% url 'updateprod'%}" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="txtid_producto" id="txtid_producto" value="{{editarprod.id_producto}}" class="form-control" placeholder="ID PRODCUTO" minlength="1" maxlength="6" required readonly> 
+                        </div>
+                        <div class="form-group py-4">
+                            <input type="text" name="txtid_tipocarne" id="txtid_tipocarne" value="{{editarprod.id_tipocarne}}" class="form-control" placeholder="ID TIPO CARNE" minlength="3" maxlength="50" required>
+                        </div>
+                        <div class="form-group py-4">
+                            <input type="text" name="txtcorte" id="txtcorte" value="{{editarprod.corte}}" class="form-control" placeholder="CORTE" minlength="3" maxlength="50" required>
+                        </div>
+                        <div class="form-group py-4">
+                            <input type="text" name="txtprecio" id="txtprecio" value="{{editarprod.precio}}" class="form-control" placeholder="PRECIO" minlength="3" maxlength="50" required>
+                        </div>
+                        <div class="form-group d-grid gap-2">
+                            <button type="submit" class="btn btn-dark btn-block">Agregar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

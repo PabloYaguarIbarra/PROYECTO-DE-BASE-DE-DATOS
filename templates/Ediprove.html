@@ -1,0 +1,38 @@
+{% extends "./base.html" %}
+
+{% block title %} Edicion de Proveedores {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="table-responsive py-2"></div>
+            <h3>Editar Proveedor</h3>  
+            <div class="card py-2 ">
+                <div class="card-body">
+                    <form action="{% url 'updateprove' %}" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="txtcod_proveedor" id="txtcod_proveedor"  value="{{editarprove.cod_proveedor}}" class="form-control" placeholder="CODIGO PROVEEDOR" minlength="1" maxlength="6" required readonly>
+                        </div>
+                        <div class="form-group py-4">
+                            <input type="text" name="txtruc" id="txtruc" value="{{editarprove.ruc}}" class="form-control" placeholder="RUC" minlength="13" maxlength="13" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="text" name="txtnombre" id="txtnombre" value="{{editarprove.nombre}}" class="form-control" placeholder="NOMBRE EMPRESA" minlength="3" maxlength="50" required> 
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="text" name="txttelefono" id="txttelefono" value="{{editarprove.telefono}}" class="form-control" placeholder="TELEFONO" minlength="10" maxlength="10" required> 
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="email" name="txtcorreo" id="txtcorreo" value="{{editarprove.correo}}" class="form-control" placeholder="CORREO" minlength="10" maxlength="50" required> 
+                        </div>
+                        <div class="form-group d-grid gap-2">
+                            <button type="submit" class="btn btn-dark btn-block">Agregar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

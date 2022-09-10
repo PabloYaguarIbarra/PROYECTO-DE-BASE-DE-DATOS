@@ -1,0 +1,71 @@
+{% extends "./base.html" %}
+
+{% block title %} Producto {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-11 col-md-5 col-lg-3 col-xl-3">
+        <div class="table-responsive py-2"></div>
+            <h3>Agregar Proveedor</h3>  
+            <div class="card py-2 ">
+                <div class="card-body">
+                    <form action="agregarprove" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="txtcod_proveedor" id="txtcod_proveedor" class="form-control" placeholder="CODIGO PROVEEDOR" minlength="1" maxlength="50" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="text" name="txtruc" id="txtruc" class="form-control" placeholder="RUC" minlength="13" maxlength="13" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="text" name="txtnombre" id="txtnombre" class="form-control" placeholder="NOMBRE DE EMPRESA" minlength="3" maxlength="50" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="text" name="txttelefono" id="txttelefono" class="form-control" placeholder="TELEFONO" minlength="10" maxlength="10" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="email" name="txtcorreo" id="txtcorreo" class="form-control" placeholder="CORREO" required>
+                        </div>
+                        <div class="form-group d-grid gap-2">
+                            <button type="submit" class="btn btn-dark btn-block">Agregar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"> 
+        <div class="table-responsive py-2">
+            <h1>Lista de Proovedores</h1>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Codigo Proveedor</th>
+                    <th>Ruc</th>
+                    <th>Nombre de Empresa</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th colspan="2">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for c in listaprove %}
+                  <tr>
+                    <td>{{c.cod_proveedor}}</td>
+                    <td>{{c.ruc}}</td>
+                    <td>{{c.nombre}}</td>
+                    <td>{{c.telefono}}</td>
+                    <td>{{c.correo}}</td>
+                    <td><a href="editarprove/{{c.cod_proveedor}}" class="btn btn-dark btn-group-sm">Editar</a></td>
+                    <td><a href="borrarprove/{{c.cod_proveedor}}" class="btn btn-dark btn-group-sm btnEliminacion">Borrar</a></td>
+                  </tr>
+                                      
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

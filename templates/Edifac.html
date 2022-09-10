@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+
+{% block title %} Edicion de Producto {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="table-responsive py-2"></div>
+            <h3>Editar Factura</h3>  
+            <div class="card py-2 ">
+                <div class="card-body">
+                    <form action="{% url 'updatefac' %}" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="txtnumfac" id="txtnumfac"  value="{{editarfac.numfac}}" class="form-control" placeholder="NUMERO FACTURA" minlength="1" maxlength="6" required readonly>
+                        </div>
+                        <div class="form-group py-4">
+                            <input type="date" name="txtfecha" id="txtfecha" value="{{editarfac.fecha}}" class="form-control"  required>
+                        </div>
+                        <div class="form-group d-grid gap-2">
+                            <button type="submit" class="btn btn-dark btn-block">Agregar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

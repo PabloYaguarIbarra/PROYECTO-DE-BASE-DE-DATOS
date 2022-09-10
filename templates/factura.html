@@ -1,0 +1,57 @@
+{% extends "./base.html" %}
+
+{% block title %} Facturas {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="table-responsive py-2"></div>
+            <h3>Agregar Facturas</h3>  
+            <div class="card py-2 ">
+                <div class="card-body">
+                    <form action="agregarfac" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="txtnumfac" id="txtnumfac" class="form-control" placeholder="NUMERO FACTURA" minlength="1" maxlength="6" required>
+                        </div>
+                        <div class="form-group py-4">
+                            <input type="date" name="txtfecha" id="txtfecha" class="form-control" placeholder="FECHA" required>
+                        </div>
+                        <div class="form-group d-grid gap-2">
+                            <button type="submit" class="btn btn-dark btn-block">Agregar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"> 
+        <div class="table-responsive py-2">
+            <h1>Lista de Facturas</h1>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Numero Factura</th>
+                    <th>Fecha</th>
+                    
+                    <th colspan="2">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for c in listafactu %}
+                  <tr>
+                    <td>{{c.numfac}}</td>
+                    <td>{{c.fecha}}</td>
+                    
+                    <td><a href="editarfac/{{c.numfac}}" class="btn btn-dark btn-group-sm">Editar</a></td>
+                    <td><a href="borrarfac/{{c.numfac}}" class="btn btn-dark btn-group-sm btnEliminacion">Borrar</a></td>
+                  </tr>
+                                      
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
